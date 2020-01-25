@@ -18,20 +18,20 @@ public class DataConfiguration extends WebMvcConfigurerAdapter{
 	@Bean
     public DataSource dataSource(){//cria um bean datasource, ou seja, uma conexao com o banco mysql
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/agendaonline");
-        dataSource.setUsername("root");
-        dataSource.setPassword("michelli14");
+		dataSource.setDriverClassName("org.postgresql.Driver");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/agendaonline");
+		dataSource.setUsername("postgres");
+		dataSource.setPassword("1234");
         return dataSource;
     }
 	
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter(){//cria um bean Hibernate
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-		adapter.setDatabase(Database.MYSQL);
+		adapter.setDatabase(Database.POSTGRESQL);
 		adapter.setShowSql(true);//mostrar codigo sql no console.
 		adapter.setGenerateDdl(true);//habilita para que o hibernate crie as tabelas automaticamente.
-		adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
+		adapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
 		adapter.setPrepareConnection(true);
 		return adapter;
 	}
