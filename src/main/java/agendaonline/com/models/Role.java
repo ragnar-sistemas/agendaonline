@@ -3,22 +3,25 @@ package agendaonline.com.models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-public class Role implements GrantedAuthority{
+public class Role implements GrantedAuthority {
 
+	private static final long serialVersionUID = -3000115911311841531L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long idRole;
 	private String nomeRole;
 
 	@ManyToMany(mappedBy = "roles")
-    private List<Usuario> usuarios;
-	
+	private List<Usuario> usuarios;
+
 	public String getNomeRole() {
 		return nomeRole;
 	}
@@ -26,7 +29,7 @@ public class Role implements GrantedAuthority{
 	public void setNomeRole(String nomeRole) {
 		this.nomeRole = nomeRole;
 	}
-	
+
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
@@ -37,9 +40,15 @@ public class Role implements GrantedAuthority{
 
 	@Override
 	public String getAuthority() {
-		// TODO Auto-generated method stub
 		return this.nomeRole;
 	}
-	
-	
+
+	public long getIdRole() {
+		return idRole;
+	}
+
+	public void setIdRole(long idRole) {
+		this.idRole = idRole;
+	}
+
 }

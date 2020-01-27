@@ -5,7 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import agendaonline.com.models.Paciente;
 import agendaonline.com.models.Prontuario;
 
-public interface ProntuariosRepository extends CrudRepository<Prontuario, String>{
-	Iterable<Prontuario> findByPaciente(Paciente paciente); 
+public interface ProntuariosRepository extends CrudRepository<Prontuario, Long> {
+	Iterable<Prontuario> findByPaciente(Paciente paciente);
+
 	Prontuario findByData(String data);
 }

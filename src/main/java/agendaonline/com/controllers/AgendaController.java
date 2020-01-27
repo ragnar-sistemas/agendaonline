@@ -1,7 +1,5 @@
 package agendaonline.com.controllers;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -77,7 +75,7 @@ public class AgendaController {
 	@RequestMapping(value="/consulta/{codigo}", method = RequestMethod.GET)
 	public ModelAndView detalhesConsulta(@PathVariable("codigo") long codigo){
 		ModelAndView mv = new ModelAndView("agenda/consultaDetalhes");
-		Consulta consulta = cr.findByCodigo(codigo);
+		Consulta consulta = cr.findByIdConsulta(codigo);
 		mv.addObject("consulta", consulta);
 		return mv;
 	}
@@ -93,7 +91,7 @@ public class AgendaController {
 	@RequestMapping(value="/consulta/{codigo}", method = RequestMethod.POST)
 	public String formProntuarioPost(@PathVariable("codigo") long codigo,  Prontuario prontuario, BindingResult result, RedirectAttributes attributes){
 	
-		Consulta consulta = cr.findByCodigo(codigo);
+		Consulta consulta = cr.findByIdConsulta(codigo);
 		
 		
 		Paciente paciente = consulta.getPaciente();

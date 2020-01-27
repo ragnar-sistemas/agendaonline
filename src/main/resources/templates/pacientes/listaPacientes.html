@@ -24,11 +24,13 @@
 		      <div class="menu-itens">
 			      <ul class="menuesquerda left hide-on-med-and-down">
 			        <li><a href="#">Pacientes</a></li>
-			        <li><div class="botao"><a href="#modal2" class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">add_circle</i>Cadastrar Paciente</a></div></li>
+			        <li><div class="botao"><a href="#modal2" class="waves-effect waves-light btn modal-trigger">
+			        	<i class="material-icons left">add_circle</i>Cadastrar Paciente</a></div>
+			        </li>
 			      </ul>
 			      <ul id="nav-mobile" class="menudireita right hide-on-med-and-down">
 			        <li><a href="#">Login</a></li>
-			        <li><a href="#">Usuário</a></li>
+			        <li><a href="#">Usu&aacute;rio</a></li>
 			        <li><a href="#">Empresa</a></li>
 			      </ul>
 		      </div>
@@ -49,26 +51,24 @@
 		  <table class="responsive-table highlight">
 		  	<thead>
 			  <tr>
-			  			<th>Nome</th>		
-			  			<th>Telefone</th> 		
-			  			<th>Email</th>
-			  			<th>Editar</th>
-			  			<th>Remover</th>
+			  	<th>Id</th>
+			  	<th>Nome</th>		
+			  	<th>Telefone</th> 		
+			  	<th>Email</th>
+			  	<th>Editar</th>
+			  	<th>Remover</th>
 			  </tr>
 			</thead>
 			<tbody>
 			  <tr th:each="paciente : ${pacientes}">
-			  		
-			  			<td><a th:href="${(#mvc.url('PC#detalhes').arg(0, paciente.nome)).build()}" class="linkNome" role="button"><span th:text="${paciente.nome}"></span></a></td>
-			  		
-			  			<td><span th:text="${paciente.telefone}"></span></td>
-			  		
-			  			<td><span th:text="${paciente.email}"></span></td>
-			  			
-			  			<td><a class="waves-effect waves-light btn-small editar"><i class="material-icons left">edit</i>Editar</a></td>
-				  			
-				  		<td><a class="waves-effect waves-light btn-small remover"><i class="material-icons left">delete</i>Remover</a></td>
-			  	
+			  	<td><span th:text="${paciente.idPaciente}"></span></td>
+			  	<td><a th:href="${(#mvc.url('PC#detalhes').arg(0, paciente.idPaciente)).build()}" class="linkNome" role="button">
+			  		<span th:text="${paciente.nome}"></span></a>
+			  	</td>
+	  			<td><span th:text="${paciente.telefone}"></span></td>
+	  			<td><span th:text="${paciente.email}"></span></td>
+	  			<td><a class="waves-effect waves-light btn-small editar"><i class="material-icons left">edit</i>Editar</a></td>
+		  		<td><a class="waves-effect waves-light btn-small remover"><i class="material-icons left">delete</i>Remover</a></td>
 			  </tr>
 			</tbody>
 		  </table>
@@ -99,19 +99,19 @@
 							    </select>
 							</div>
 							<div class="input-field col s4">
-							    <select name="convenio.nomeConvenio">
-							    	<option value="">Convênio</option>
-								      <option th:each="convenio : ${convenios}" th:value="${convenio.nomeConvenio}" th:text="${convenio.nomeConvenio}"></option>
+							    <select name="convenio.idConvenio">
+							    	<option value="">Conv&ecirc;nio</option>
+								      <option th:each="convenio : ${convenios}" th:value="${convenio.idConvenio}" th:text="${convenio.nomeConvenio}"></option>
 							    </select>
 							</div>
 					  </div>
 					  	
 					  <div class="row"> 
 						  	<div class="input-field col s6">
-						  		Endereço: <input type="text" value="" class="form-control" id="" name="endereco"/>
+						  		Endere&ccedil;o: <input type="text" value="" class="form-control" id="" name="endereco"/>
 						  	</div>
 						  	<div class="input-field col s3">
-						  		Número: <input type="text" value="" class="form-control" id="" name="numero"/>
+						  		N&uacute;mero: <input type="text" value="" class="form-control" id="" name="numero"/>
 						  	</div>
 						  	<div class="input-field col s3">
 						  		Bairro: <input type="text" value="" class="form-control" id="" name="bairro"/>
@@ -141,7 +141,7 @@
 					  
 					  <div class="row"> 
 						  	<div class="input-field col s12">
-						  		Observação: <input type="text" value="" class="form-control" id="" name="observacao"/>
+						  		Observa&ccedil;&atilde;o: <input type="text" value="" class="form-control" id="" name="observacao"/>
 						  	</div>
 					  </div>
 					  

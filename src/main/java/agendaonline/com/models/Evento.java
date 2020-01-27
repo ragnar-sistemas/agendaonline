@@ -8,41 +8,32 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
-public class Evento implements Serializable{
-	
+public class Evento implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
-	private long codigo;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long idEvento;
 	private String title;
-	
 	@Column(name = "comeco")
 	private String start;
-	
 	@Column(name = "fim")
 	private String end;
-	
 	private long url;
-	
 	private String data;
-	
-	public Evento(){
-		
+
+	public Evento() {
 	}
-	
-	public Evento(Consulta consulta){
+
+	public Evento(Consulta consulta) {
 		this.title = consulta.getPaciente().getNome();
 		this.start = consulta.getHorarioInicio();
 		this.end = consulta.getHorarioTermino();
-		this.url = consulta.getCodigo();
+		this.url = consulta.getIdConsulta();
 		this.data = consulta.getData();
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -77,7 +68,7 @@ public class Evento implements Serializable{
 
 	public String getUrl() {
 		String link = "http://localhost:8080/consulta/";
-		//String link = "https://appagendaonline.herokuapp.com/consulta/";
+		// String link = "https://appagendaonline.herokuapp.com/consulta/";
 		String newUrl = link.concat(this.toString());
 		return newUrl;
 	}
