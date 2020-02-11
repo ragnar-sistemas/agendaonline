@@ -29,28 +29,28 @@ import agendaonline.com.repositories.ProntuariosRepository;
 public class AgendaController {
 	
 	@Autowired
-	private ProcedimentoRepository pr;
+	private ProcedimentoRepository procedimentoRepository;
 	
 	@Autowired
-	private ConsultaRepository cr;
+	private ConsultaRepository consultaRepository;
 	
 	@Autowired
-	private PacienteRepository par;
+	private PacienteRepository pacienteRepository;
 	
 	@Autowired
-	private EventoRepository er;
+	private EventoRepository eventoRepository;
 	
 	@Autowired
-	private ProntuariosRepository prr;
+	private ProntuariosRepository prontuariosRepository;
 	
 	@RequestMapping(value = "/agenda", method = RequestMethod.GET)
 	public ModelAndView MontaAgenda(Model model) {
 		 
 		ModelAndView mv = new ModelAndView("agenda/agenda");
 
-		Iterable<Procedimento> listaProcedimentos = pr.findAll();
+		Iterable<Procedimento> listaProcedimentos = procedimentoRepository.findAll();
 		model.addAttribute("procedimentos", listaProcedimentos);
-		Iterable<Paciente> listaPacientes = par.findAll();
+		Iterable<Paciente> listaPacientes = pacienteRepository.findAll();
 		model.addAttribute("pacientes", listaPacientes);
 		
 		return mv;
@@ -58,16 +58,16 @@ public class AgendaController {
 	
 	@RequestMapping(value="/agenda", method=RequestMethod.POST)
 	public String MontaAgenda(Consulta consulta){
-		cr.save(consulta);
+		consultaRepository.save(consulta);
 		Evento evento = new Evento(consulta);
-		er.save(evento);
+		eventoRepository.save(evento);
 		return "redirect:/agenda";
 	}
 	
 	@RequestMapping(value="/getEventos.json", method = RequestMethod.GET)
 	public @ResponseBody Iterable<Evento> agenda(){
 		
-		Iterable<Evento> listaEventos = er.findAll();
+		Iterable<Evento> listaEventos = eventoRepository.findAll();
 		
 		return listaEventos;
 	}
@@ -75,7 +75,7 @@ public class AgendaController {
 	@RequestMapping(value="/consulta/{codigo}", method = RequestMethod.GET)
 	public ModelAndView detalhesConsulta(@PathVariable("codigo") long codigo){
 		ModelAndView mv = new ModelAndView("agenda/consultaDetalhes");
-		Consulta consulta = cr.findByIdConsulta(codigo);
+		Consulta consulta = consultaRepository.findByIdConsulta(codigo);
 		mv.addObject("consulta", consulta);
 		return mv;
 	}
@@ -91,7 +91,7 @@ public class AgendaController {
 	@RequestMapping(value="/consulta/{codigo}", method = RequestMethod.POST)
 	public String formProntuarioPost(@PathVariable("codigo") long codigo,  Prontuario prontuario, BindingResult result, RedirectAttributes attributes){
 	
-		Consulta consulta = cr.findByIdConsulta(codigo);
+		Consulta consulta = consultaRepository.findByIdConsulta(codigo);
 		
 		
 		Paciente paciente = consulta.getPaciente();
@@ -108,7 +108,7 @@ public class AgendaController {
 		
 		prontuario.setData(newData);
 		
-		prr.save(prontuario);
+		prontuariosRepository.save(prontuario);
 		
 		return "redirect:/consulta/{codigo}";
 	}

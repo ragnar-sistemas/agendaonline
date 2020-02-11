@@ -24,9 +24,6 @@
 		      <div class="menu-itens">
 			      <ul class="menuesquerda left hide-on-med-and-down">
 			        <li><a href="#">Procedimentos</a></li>
-			        <li><div class="botao"><a href="#modal5" class="waves-effect waves-light btn modal-trigger">
-			        	<i class="material-icons left">add_circle</i>Cadastrar Procedimento</a></div>
-			        </li>
 			      </ul>
 			      <ul id="nav-mobile" class="menudireita right hide-on-med-and-down">
 			        <li><a href="#">Login</a></li>
@@ -42,49 +39,11 @@
 	
 	
 	 <!-- ASIDE -->
-	  <div th:replace="LayoutPadrao:: aside"></div> <!-- Carregando o aside do arquivo externo layoutPadrao -->
-	  
-	  
-	  <!-- SECTION -->
-	  <section class="conteudo" th:fragment="conteudo"> <!-- section com conteudo criado aqui nesta mesma página -->
-		  <!-- Conteudo -->
-		  <table class="responsive-table">
-		  	<thead>
-		  		<tr>
-		  			<th>Id</th>
-		  			<th>Procedimentos</th>
-		  			<th>Editar</th>
-			  		<th>Remover</th>
-		  		</tr>
-		  	</thead>
-		  	<tbody>
-			  <tr th:each="procedimento : ${procedimentos}">
-			  	<td><span th:text="${procedimento.idProcedimento}"></span></td>
-			  	<td><span th:text="${procedimento.tipoProcedimento}"></span></td>
-			  	<td>
-			  		<a th:attr="onclick=${'modalRemover(' + procedimento.idProcedimento + ';' + procedimento.tipoProcedimento + ');'}" 
-			  		   href="#"
-			  		   class="waves-effect waves-light btn-small editar">
-			  			<i class="material-icons left">edit</i>
-			  			Editar
-			  		</a>
-			  	</td>
-				<td>
-					<a th:href="@{/procedimentos/excluir/{id}(id=${procedimento.idProcedimento})}" 
-					   class="waves-effect waves-light btn-small remover">
-						<i class="material-icons left">delete</i>
-						Remover
-					</a>
-				</td>
-			  </tr>
-		  	</tbody> 
-		  </table>
-	  </section>
-	  
+	  <div th:replace="layoutPadrao:: aside"></div> <!-- Carregando o aside do arquivo externo layoutPadrao -->
 	  <!-- Modal Structure -->
 	  <div id="modal5" class="modal">
 	    <div class="modal-content">
-	      <form  method="post" th:object="${procedimento}">
+	      <form  method="post" th:object="${procedimento}" th:action="@{/salvaProcedimento}">
 				<div class="">
 					  <div class="row"> 
 					  		<div class="input-field col s6">
@@ -96,7 +55,7 @@
 					  </div>
 					  <div class="modal-footer">
 					 	 <button class="btn waves-effect waves-light" type="submit">Salvar</button>
-	     				 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+	     				 <a th:href="@{/procedimentos}" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
 	   				 </div> 
 			   </div> 
 		  </form>
@@ -109,13 +68,4 @@
       <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
       
 </body>
-<script>
-	function modalRemover(procedimento) {
-		var id = procedimento.split(";")[0];
-		var tipoProcedimento = procedimento.split(";")[1];
-		jQuery("#modal5").val(id);
-		jQuery("#modal5").val(tipoProcedimento);
-		jQuery("#modal5").show();	
-    };
-</script>
 </html>

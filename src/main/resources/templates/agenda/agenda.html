@@ -44,7 +44,7 @@
 	
 	
 	 <!-- ASIDE -->
-	  <div th:replace="LayoutPadrao:: aside"></div> <!-- Carregando o aside do arquivo externo layoutPadrao -->
+	  <div th:replace="layoutPadrao:: aside"></div> <!-- Carregando o aside do arquivo externo layoutPadrao -->
 	  
 	  
 	  <!-- SECTION -->
@@ -61,18 +61,18 @@
 				<div class=""> 
 					  <div class="row"> 
 						  	<div class="input-field col s9">
-						  		<select name="paciente.nome">
+						  		<select name="paciente.idPaciente">
 							    	<option value="">Paciente</option>
-								      <option th:each="paciente : ${pacientes}" th:value="${paciente.nome}" th:text="${paciente.nome}"></option>
+								      <option th:each="paciente : ${pacientes}" th:value="${paciente.idPaciente}" th:text="${paciente.nome}"></option>
 							    </select>
 						  	</div>
 					  </div>
 					  	
 					  <div class="row"> 
 						  	<div class="input-field col s3">
-						  		<select name="procedimento.tipoProcedimento">
+						  		<select name="procedimento.idProcedimento">
 							    	<option value="">Procedimento</option>
-								      <option th:each="procedimento : ${procedimentos}" th:value="${procedimento.tipoProcedimento}" th:text="${procedimento.tipoProcedimento}"></option>
+								      <option th:each="procedimento : ${procedimentos}" th:value="${procedimento.idProcedimento}" th:text="${procedimento.tipoProcedimento}"></option>
 							    </select>
 						  	</div>
 						  	<div class="input-field col s3">

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	  <title>AgendaOnline</title>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="style/styleCss.css"/>
+</head>
+<body>
+	  <header th:fragment="header">
+		<div class="navbar-fixed">
+		<nav class="menu">
+		    <div class="nav-wrapper">
+		      <div class="menu-itens">
+			      <ul class="menuesquerda left hide-on-med-and-down">
+			        <li><a href="#">M&eacute;dicos</a></li>
+			        <li><div class="botao"><a href="#modal2" class="waves-effect waves-light btn modal-trigger">
+			        	<i class="material-icons left">add_circle</i>Cadastrar M&eacute;dico</a></div>
+			        </li>
+			      </ul>
+			      <ul id="nav-mobile" class="menudireita right hide-on-med-and-down">
+			        <li><a href="#">Login</a></li>
+			        <li><a href="#">Usu&aacute;rio</a></li>
+			        <li><a href="#">Empresa</a></li>
+			      </ul>
+		      </div>
+		      
+		    </div>
+		  </nav>
+		  </div>
+	  </header>
+	  <div th:replace="layoutPadrao:: aside"></div>
+	  <section class="conteudo" th:fragment="conteudo">
+		  <table class="responsive-table highlight">
+		  	<thead>
+			  <tr>
+			  	<th>Id</th>
+			  	<th>Nome</th>		
+			  	<th>Telefone</th> 		
+			  	<th>Email</th>
+			  	<th>Editar</th>
+			  	<th>Remover</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr th:each="medico : ${medicos}">
+			  	<td><span th:text="${medico.idMedico}"></span></td>
+			  	<td><span th:text="${medico.nome}"></span></td>
+	  			<td><span th:text="${medico.telefone}"></span></td>
+	  			<td><span th:text="${medico.email}"></span></td>
+	  			<td><a class="waves-effect waves-light btn-small editar"><i class="material-icons left">edit</i>Editar</a></td>
+				<td>
+					<a th:href="@{/medicos/excluir/{id}(id=${medico.idMedico})}"
+					   class="waves-effect waves-light btn-small remover"> 
+					   <i class="material-icons left">delete</i> Remover
+					</a>
+				</td>
+			  </tr>
+			</tbody>
+		  </table>
+	  </section>
+	  
+	  <!-- Modal Structure -->
+	  <div id="modal2" class="modal">
+	    <div class="modal-content">
+	    <h5>Cadastrar M&eacute;dico</h5>
+		  <form  method="post" th:object="${medico}">
+				<div class=""> 
+					  <div class="row"> 
+						  	<div class="input-field col s12">
+						  		Nome: <input type="text" value="" class="form-control" id="" name="nome"/>
+						  	</div>
+						  	<div class="input-field col s12">
+						  		CRM: <input type="text" value="" class="form-control" id="" name="crm"/>
+						  	</div>						  	
+					  </div>
+					  <div class="row"> 
+						  	<div class="input-field col s6">
+						  		Telefone: <input type="text" value="" class="form-control" id="" name="telefone"/>
+						  	</div>
+						  	<div class="input-field col s6">
+						  		email: <input type="text" value="" class="form-control" id="" name="email"/>
+						  	</div>
+					  </div>
+					  <div class="row"> 
+						  	<div class="input-field col s12">
+						  		Observa&ccedil;&atilde;o: <input type="text" value="" class="form-control" id="" name="observacao"/>
+						  	</div>
+					  </div>
+					  
+					  <div class="modal-footer">
+					  	  <button class="btn waves-effect waves-light modal-action modal-close" type="submit">Salvar</button>
+					      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+					  </div>
+			   </div> 
+		  </form>
+	    </div>
+	  </div>
+  
+  <!--Import jQuery before materialize.js-->
+  	  <script src="jquery/jquery-3.2.1.js"></script>
+	  <script src="jquery/main.js"></script>
+      <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+      
+</body>
+</html>

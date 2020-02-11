@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>AgendaOnline</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		  rel="stylesheet" />
+	<link type="text/css" rel="stylesheet"
+		  href="materialize/css/materialize.min.css" media="screen,projection" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="style/styleCss.css" />
+</head>
+<body>
+	<div th:fragment="aside">
+		<aside>
+			<div class="menu-lateral">
+				<ul id="slide-out" class="side-nav fixed">
+					<li>
+						<div class="user-view">
+							<div class="backgroud">
+								<h7>AgendaOnline</h7>
+								<i class="small material-icons">date_range</i>
+							</div>
+						</div>
+					</li>
+					<li><a href="/agenda">Agenda</a></li>
+					<li><a href="/medicos">M&eacute;dicos</a></li>
+					<li><a href="/pacientes">Pacientes</a></li>
+					<li><a href="#!">Usu&aacute;rios</a></li>
+					<li><a href="#!">Prontu&aacute;rios</a></li>
+					<li><a href="/convenios">Conv&ecirc;nios</a></li>
+					<li><a href="/listarProcedimentos">Procedimentos</a></li>
+				</ul>
+			</div>
+		</aside>
+	</div>
+	<!--Import jQuery before materialize.js-->
+	<script src="jquery/jquery-3.2.1.js"></script>
+	<script src="jquery/main.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>
